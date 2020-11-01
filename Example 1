@@ -1,1 +1,61 @@
+using System;
+using System.Collection;
+using Sysstem.Collection.Genric;
+namespace Example{
+class Program{
+public static void Main(string[] args)
+{
+          Dictionary<string, int> math = new Dictionary<string, int>();
+            math.Add("vishwdeep", 9);
+            math.Add("Prahlad", 8);
+            math.Add("Amit", 10);
+            math.Add("mahesh", 8);
+            math.Add("Ajay", 7);
 
+            Dictionary<string, int> english = new Dictionary<string, int>();
+            english.Add("sandeep", 7);
+            english.Add("Amit", 9);
+            english.Add("mahesh", 8);
+            english.Add("sarita", 10);
+
+            Dictionary<string, int> Merge_dict = new Dictionary<string, int>();
+            foreach (var item in math.Keys)
+            {
+                foreach (var item1 in english.Keys)
+                {
+                    if (item == item1)
+                   {
+                       if (math[item] >= english[item1])
+                            Merge_dict.Add(item, math[item]);
+                        else
+                            Merge_dict.Add(item, english[item1]);
+                   }
+                   else
+                    { Merge_dict.Add(item, math[item]); break; }
+
+                }
+            }
+            int res = 1;
+            foreach (var item in english.Keys)
+            {
+                foreach (var item1 in math.Keys)
+                {
+                    if (item == item1)
+                    {
+                        res = 0;
+                        break;
+                    }
+
+                }
+                if (res == 1)
+                { Merge_dict.Add(item, english[item]); }
+                else { res = 1; }
+            }
+            Console.WriteLine("ConsolidateFeedback.................");
+            foreach (var item in Merge_dict.Keys)
+            {
+                Console.WriteLine(item + "    " + Merge_dict[item]);
+            }
+}
+}
+}
